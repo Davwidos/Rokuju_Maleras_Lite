@@ -105,8 +105,8 @@ void UdpSocket::send(QString messege, QHostAddress address)
 {
     QByteArray data;
     data.append(messege);
-    if(address!=QHostAddress::Null) while(data.size()!=myudpsocket->writeDatagram(data,address,1234));
-    for(QHostAddress address:allConnections) while(data.size()!=myudpsocket->writeDatagram(data,address,1234));
+    if(address!=QHostAddress::Null) myudpsocket->writeDatagram(data,address,1234);
+    for(QHostAddress address:allConnections) myudpsocket->writeDatagram(data,address,1234);
 
 }
 
