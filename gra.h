@@ -25,6 +25,7 @@ public:
     void kolejnatura(int k);
     QGraphicsScene *scene;
     Karta *nastole=nullptr;
+    void nastepnyGracz();
 public slots:
     void nowaGra();
     void start(QString);
