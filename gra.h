@@ -35,10 +35,11 @@ public slots:
     void send(int);
     void polacz();
 
+
 private:
     Gracz *gracz;
-    Gracz *turagracza;
-    QList<Gracz*> gracze;
+    Gracz *drugigracz;
+
 
     Talia *talia;
     QString state;
