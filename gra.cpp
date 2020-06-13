@@ -16,6 +16,7 @@
 #include"strona_ins.h"
 #include "talia.h"
 #include<QDebug>
+#include<QMessageBox>
 Gra::Gra(QWidget *parent) :QGraphicsView(parent)
 {
     QRect rec=QApplication::desktop()->screenGeometry();
@@ -125,11 +126,23 @@ void Gra::tura()
     Karta *k=gracz->dobierz();
     if(k==nullptr)
     {
+        QMessageBox *msgBox=new QMessageBox (this);
         if(gracz->k1->getMoc()>=drugigracz->k1->getMoc())
         {
             poloczenie->send("20");
+            //QMessageBox *box= new QMessageBox (this);
+                msgBox->setText("Wygrałeś!");
+
 
         }
+        else
+        {
+            poloczenie->send("21");
+                msgBox->setText("Przegrałeś!");
+
+        }
+        msgBox->exec();
+        connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
         return;
 
     }
@@ -229,7 +242,17 @@ void Gra::recive(QString s,QString nadawca)
     }
     if(k==20)
     {
-
+        QMessageBox *msgBox=new QMessageBox (this);
+        msgBox->setText("Przegrałeś!");
+        msgBox->exec();
+        connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
+    }
+    if(k==21)
+    {
+        QMessageBox *msgBox=new QMessageBox (this);
+        msgBox->setText("Wygrałeś!");
+        msgBox->exec();
+        connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
     }
 }
 
