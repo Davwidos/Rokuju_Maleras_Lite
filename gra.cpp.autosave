@@ -242,7 +242,17 @@ void Gra::recive(QString s,QString nadawca)
     }
     if(k==20)
     {
-
+        QMessageBox *msgBox=new QMessageBox (this);
+        msgBox->setText("Przegrałeś!");
+        msgBox->exec();
+        connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
+    }
+    if(k==21)
+    {
+        QMessageBox *msgBox=new QMessageBox (this);
+        msgBox->setText("Wygrałeś!");
+        msgBox->exec();
+        connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
     }
 }
 
