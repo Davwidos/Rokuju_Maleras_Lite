@@ -35,3 +35,8 @@ int Karta::getMoc()
 {
     return moc;
 }
+
+QString Karta::getNazwa()
+{
+    return nazwa;
+}

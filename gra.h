@@ -39,7 +39,7 @@ public slots:
     void polacz();
     void wygrana();
     void przegrana();
-    void remis();
+    void wiadomosc(QString);
 
 
 private:

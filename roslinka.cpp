@@ -3,6 +3,7 @@
 Roslinka::Roslinka(QString path, Gra *gra,QGraphicsItem *parent) :Karta(path,gra,parent) // tworzenie karty roślinka
 {
     moc=1;
+    nazwa="Roslinka";
 }
 
 

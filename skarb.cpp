@@ -6,6 +6,7 @@
 Skarb::Skarb(QString path,Gra *gra, QGraphicsItem *parent) :Karta(path,gra,parent)// towrzenie karty skarb
 {
     moc=8;
+    nazwa="Skarb";
 }
 
 bool Skarb::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie)// działanie skarbu

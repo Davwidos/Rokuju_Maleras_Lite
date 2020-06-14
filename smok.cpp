@@ -3,6 +3,7 @@
 Smok::Smok(QString path,Gra *gra, QGraphicsItem *parent) :Karta(path,gra,parent) //towrzenie karty smok
 {
     moc=7;
+    nazwa="Smok";
 }
 
 bool Smok::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie)//działanie smoka

@@ -20,6 +20,7 @@ public:
 
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     int getMoc();
+    QString getNazwa();
 public slots:
     virtual void wybrano(QString)=0;
 signals:
@@ -28,5 +29,6 @@ protected:
     short moc;
     Gra *gra;
     QList<Przycisk*> przyciski;
+    QString nazwa;
 };
 #endif // KARTA_H

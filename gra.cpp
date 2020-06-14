@@ -289,10 +289,8 @@ void Gra::recive(QString s,QString nadawca) // otrzymywanie danych od drugiego g
     }
     if(k==23)
     {
-        QMessageBox *msgBox= new QMessageBox(this);
+        wiadomosc("remis!");
 
-        msgBox->setText("Remis!");
-        msgBox->show();
     }
     if(k==24)
     {
@@ -338,11 +336,10 @@ void Gra::przegrana()
     msgBox.exec();
     this->menu();
 }
-void Gra::remis()
+void Gra::wiadomosc(QString t)
 {
     QMessageBox *msgBox= new QMessageBox(this);
-    poloczenie->send("23");
-    msgBox->setText("Remis!");
+    msgBox->setText(t);
     msgBox->show();
 
 

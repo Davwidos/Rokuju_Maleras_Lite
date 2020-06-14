@@ -5,6 +5,7 @@ Kaczor::Kaczor(QString path,Gra *gra, QGraphicsItem *parent) :Karta(path,gra,par
 {
 
     moc=3;
+    nazwa="Kaczor";
 }
 
 
@@ -29,7 +30,11 @@ bool Kaczor::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie)// dzialanie ka
                  return false;
              }
              if(g->k2->getMoc()==d->k1->getMoc())
-                 gra->remis();
+               {  gra->wiadomosc("remis!");
+                poloczenie->send("23");
+
+             }
+
         }
         else
         {
@@ -44,7 +49,8 @@ bool Kaczor::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie)// dzialanie ka
                  return false;
              }
              if(g->k1->getMoc()==d->k1->getMoc())
-                 gra->remis();
+                 gra->wiadomosc("remis!");
+                                 poloczenie->send("23");
         }
     }
 return true;

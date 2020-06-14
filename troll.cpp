@@ -4,6 +4,7 @@
 Troll::Troll(QString path,Gra *gra, QGraphicsItem *parent) :Karta(path,gra,parent) // tworzenie karty troll
 {
     moc=5;
+    nazwa="Troll";
 }
 
 bool Troll::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie) // dzialanie trolla
