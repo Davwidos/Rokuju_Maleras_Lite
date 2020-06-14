@@ -142,10 +142,12 @@ void Gra::tura()
 
         }
         msgBox->exec();
-        connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
+        menu();
+       // connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
         return;
 
     }
+    gracz->ochrona=false;
     send(k->getMoc()+10);
     k->setY(height()-k->boundingRect().height());
     scene->addItem(k);
@@ -168,6 +170,7 @@ void Gra::koniectury(Karta* k)
     nastole->setX(width()/2-nastole->boundingRect().width()/2);
     nastole->setY(height()/2-nastole->boundingRect().height()/2);
     send(nastole->getMoc());
+    drugigracz->ochrona=false;
 }
 
 void Gra::kolejnatura(int m)
@@ -245,14 +248,36 @@ void Gra::recive(QString s,QString nadawca)
         QMessageBox *msgBox=new QMessageBox (this);
         msgBox->setText("Przegrałeś!");
         msgBox->exec();
-        connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
+        menu();
+       // connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
     }
     if(k==21)
     {
         QMessageBox *msgBox=new QMessageBox (this);
         msgBox->setText("Wygrałeś!");
         msgBox->exec();
-        connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
+       // connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
+        menu();
+    }
+    if(k==22)
+    {
+        Karta *b=gracz->k1;
+        scene->removeItem(gracz->k1);
+        disconnect(gracz->k1,SIGNAL(clicked(Karta*)),this,SLOT(zagraj(Karta*)));
+        if(drugigracz->k1->getMoc()!=6)
+        {
+
+            gracz->k1=drugigracz->k1;
+
+        drugigracz->k1=b;
+        }
+        else
+        {
+            gracz->k1=drugigracz->k2;
+        drugigracz->k2=b;
+        }
+        connect(gracz->k1,SIGNAL(clicked(Karta*)),this,SLOT(zagraj(Karta*)));
+        gracz->k1->setX(width()/2-gracz->k1->boundingRect().width());
     }
 }
 

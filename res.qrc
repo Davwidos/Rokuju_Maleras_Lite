@@ -1,0 +1,38 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>1.png</file>
+        <file>2.png</file>
+        <file>3.png</file>
+        <file>4.png</file>
+        <file>5.png</file>
+        <file>6.png</file>
+        <file>7.png</file>
+        <file>8.png</file>
+        <file>bg.png</file>
+        <file>bg.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-01.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-02.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-03.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-04.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-05.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-06.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-07.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-08.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-09.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-10.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-11.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-12.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-13.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-14.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-15.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-16.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-17.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-18.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-19.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-20.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-21.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-22.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-23.jpg</file>
+        <file>MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-24.jpg</file>
+    </qresource>
+</RCC>

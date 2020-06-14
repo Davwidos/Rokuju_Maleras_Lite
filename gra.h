@@ -23,6 +23,9 @@ public:
     void kolejnatura(int k);
     QGraphicsScene *scene;
     Karta *nastole=nullptr;
+    Gracz *gracz;
+    Gracz *drugigracz;
+    UdpSocket *poloczenie;
 public slots:
     void nowaGra();
     void start();
@@ -37,14 +40,13 @@ public slots:
 
 
 private:
-    Gracz *gracz;
-    Gracz *drugigracz;
+
 
 
     Talia *talia;
     QString state;
     Instrukcja *instru;
-    UdpSocket *poloczenie;
+
     DodajPoloczenie *dodajPoloczenie;
 
 
