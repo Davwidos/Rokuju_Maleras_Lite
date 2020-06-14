@@ -29,7 +29,7 @@ QString Gracz::getNazwa() // nazwa gracza
 
 void Gracz::zagraj(Karta *k) // wyrzucenie karty
 {
-    if(k->dzialanie(this) && tura)
+    if(k->dzialanie(this,gra->drugigracz,gra->poloczenie) && tura)
     {
         disconnect(k,SIGNAL(clicked(Karta*)),this,SLOT(zagraj(Karta*)));
         if(k==k1) k1=k2;

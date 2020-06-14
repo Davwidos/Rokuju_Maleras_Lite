@@ -5,7 +5,8 @@ Roslinka::Roslinka(QString path, Gra *gra,QGraphicsItem *parent) :Karta(path,gra
     moc=1;
 }
 
-bool Roslinka::dzialanie(Gracz *g)  // działanie roślinki
+
+bool Roslinka::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie)  // działanie roślinki
 {
 return true;
 }

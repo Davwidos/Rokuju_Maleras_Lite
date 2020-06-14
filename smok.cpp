@@ -5,8 +5,7 @@ Smok::Smok(QString path,Gra *gra, QGraphicsItem *parent) :Karta(path,gra,parent)
     moc=7;
 }
 
-bool Smok::dzialanie(Gracz *g) //działanie smoka
-{
+bool Smok::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie)//działanie smoka
 {
 return true;
 }

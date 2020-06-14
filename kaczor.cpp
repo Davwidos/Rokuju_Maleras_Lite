@@ -6,7 +6,8 @@ Kaczor::Kaczor(QString path,Gra *gra, QGraphicsItem *parent) :Karta(path,gra,par
     moc=3;
 }
 
-bool Kaczor::dzialanie(Gracz *g) // dzialanie kaczora
+
+bool Kaczor::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie)// dzialanie kaczora
 {
 
 return true;

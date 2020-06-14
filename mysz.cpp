@@ -7,7 +7,8 @@ Mysz::Mysz(QString path,Gra *gra, QGraphicsItem *parent) :Karta(path,gra,parent)
     moc=2;
 }
 
-bool Mysz::dzialanie(Gracz *g) //dzialanie myszy
+
+bool Mysz::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie) //dzialanie myszy
 {
     gracze();
     return true;

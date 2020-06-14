@@ -5,8 +5,11 @@ Troll::Troll(QString path,Gra *gra, QGraphicsItem *parent) :Karta(path,gra,paren
     moc=5;
 }
 
-bool Troll::dzialanie(Gracz *g) // dzialanie trolla
+bool Troll::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie) // dzialanie trolla
 {
+    if(g->k1->getMoc()==7||g->k2->getMoc()==7)
+        return false;
+
 return true;
 }
 

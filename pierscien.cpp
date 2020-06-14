@@ -5,7 +5,7 @@ Pierscien::Pierscien(QString path,Gra *gra, QGraphicsItem *parent) :Karta(path,g
     moc=4;
 }
 
-bool Pierscien::dzialanie(Gracz *g) // dzialanie pierscienia
+bool Pierscien::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie) // dzialanie pierscienia
 {
     g->ochrona=true;
     return true;
