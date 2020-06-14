@@ -17,7 +17,7 @@
 #include "talia.h"
 #include<QDebug>
 #include<QMessageBox>
-Gra::Gra(QWidget *parent) :QGraphicsView(parent)
+Gra::Gra(QWidget *parent) :QGraphicsView(parent) // tworzenie okn az gra
 {
     QRect rec=QApplication::desktop()->screenGeometry();
     scene = new QGraphicsScene();
@@ -36,7 +36,7 @@ Gra::Gra(QWidget *parent) :QGraphicsView(parent)
 }
 
 
-Karta *Gra::dobierz()
+Karta *Gra::dobierz() //dobieranie karty przez gracza
 {
     if(!talia->empty())
     {
@@ -70,7 +70,7 @@ QList<Przycisk *> Gra::getPrzyciskGracze()
 }
 
 
-void Gra::start()
+void Gra::start() // rozpoczecie gry
 {
     if(state=="polacz") delete dodajPoloczenie;
     gracz=new Gracz(this,"");
@@ -83,12 +83,12 @@ void Gra::start()
 
 }
 
-void Gra::stop()
+void Gra::stop() // zakonczenie gry
 {
     QApplication::quit();
 }
 
-void Gra::menu()
+void Gra::menu() // przejscie do menu
 {
     if(state=="instrukcja") delete instru;
     else if(state=="start")
@@ -121,7 +121,7 @@ void Gra::menu()
     scene->addItem(przycisk);
 }
 
-void Gra::tura()
+void Gra::tura() // zaczecie tury
 {
     Karta *k=gracz->dobierz();
     if(k==nullptr)
@@ -155,7 +155,7 @@ void Gra::tura()
     gracz->tura=true;
 }
 
-void Gra::koniectury(Karta* k)
+void Gra::koniectury(Karta* k) //zakonczenie tury
 {
     //if(!gracz->tura) return;
 
@@ -170,7 +170,7 @@ void Gra::koniectury(Karta* k)
     send(nastole->getMoc());
 }
 
-void Gra::kolejnatura(int m)
+void Gra::kolejnatura(int m) // przejscie do kolejnej tury
 {
     Karta *k;
     if(m==1) k=new Roslinka(":/images/1.png",this);
@@ -194,13 +194,13 @@ void Gra::kolejnatura(int m)
     tura();
 }
 
-void Gra::nowaGra()
+void Gra::nowaGra() // rozpoczecie nowej gry
 {
     start();
     tura();
 }
 
-void Gra::instrukcja()
+void Gra::instrukcja() // otworzenie instrukcji
 {
     state="instrukcja";
     scene->clear();
@@ -210,7 +210,7 @@ void Gra::instrukcja()
 
 }
 
-void Gra::recive(QString s,QString nadawca)
+void Gra::recive(QString s,QString nadawca) // otrzymywanie danych od drugiego gracza
 {
     if(!isdigit(s.toStdString()[0]))
     {
@@ -256,13 +256,13 @@ void Gra::recive(QString s,QString nadawca)
     }
 }
 
-void Gra::send(int w)
+void Gra::send(int w) // wyslanie fanych do drugiego gracza
 {
 
     poloczenie->send(QString::number(w));
 }
 
-void Gra::polacz()
+void Gra::polacz() // laczenie z innym graczem
 {
     state="polacz";
     scene->clear();

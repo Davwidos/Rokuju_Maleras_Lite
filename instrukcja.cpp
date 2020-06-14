@@ -1,7 +1,7 @@
 #include "instrukcja.h"
 #include "gra.h"
 
-Instrukcja::Instrukcja(QGraphicsScene *g):QObject(),QList<Strona_ins *>()
+Instrukcja::Instrukcja(QGraphicsScene *g):QObject(),QList<Strona_ins *>() // instrukcja
 {
 
    sc=g;
@@ -25,7 +25,7 @@ Instrukcja::Instrukcja(QGraphicsScene *g):QObject(),QList<Strona_ins *>()
             sc->addItem(*it);
 }
 
-void Instrukcja::ins(bool k)
+void Instrukcja::ins(bool k) // wyswietlenie instrukcji
 {
     if(k)
     {
