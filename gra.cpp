@@ -179,7 +179,12 @@ void Gra::kolejnatura(int m)
     if(m==1) k=new Roslinka(":/images/1.png",this);
     else if(m==2) k=new Mysz(":/images/2.png",this);
     else if(m==3) k=new Kaczor(":/images/3.png",this);
-    else if(m==4) k=new Pierscien(":/images/4.png",this);
+    else if(m==4)
+    {
+        k=new Pierscien(":/images/4.png",this);
+        drugigracz->ochrona=true;
+
+    }
     else if(m==5) k=new Troll(":/images/5.png",this);
     else if(m==6) k=new Altanka(":/images/6.png",this);
     else if(m==7) k=new Smok(":/images/7.png",this);
@@ -277,7 +282,7 @@ void Gra::recive(QString s,QString nadawca)
         drugigracz->k2=b;
         }
         connect(gracz->k1,SIGNAL(clicked(Karta*)),gracz,SLOT(zagraj(Karta*)));
-        gracz->k1->setY(height()/2-gracz->k1->boundingRect().height());
+        gracz->k1->setY(height()-gracz->k1->boundingRect().height());
         gracz->k1->setX(width()/2-gracz->k1->boundingRect().width());
         scene->addItem(gracz->k1);
     }
