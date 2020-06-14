@@ -14,8 +14,7 @@ Mysz::Mysz(QString path,Gra *gra, QGraphicsItem *parent) :Karta(path,gra,parent)
 bool Mysz::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie)
 {
   ///dzialanie myszy
-    gra->wiadomosc(d->k1->getNazwa());
-    }
+    if(!g->ochrona) gra->wiadomosc(d->k1->getNazwa());
     return true;
 }
 
