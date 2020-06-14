@@ -141,6 +141,7 @@ void Gra::tura()
                 msgBox->setText("Przegrałeś!");
 
         }
+
         msgBox->exec();
         menu();
        // connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));

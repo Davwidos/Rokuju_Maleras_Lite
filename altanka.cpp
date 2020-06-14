@@ -8,6 +8,8 @@ Altanka::Altanka(QString path,Gra *gra, QGraphicsItem *parent) :Karta(path,gra,p
 
 bool Altanka::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie)
 {
+    if(g->k1->getMoc()==7||g->k2->getMoc()==7)
+        return false;
   if (d->ochrona==false)
   {
       Karta *b=d->k1;
