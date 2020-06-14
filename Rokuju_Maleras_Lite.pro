@@ -20,6 +20,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     altanka.cpp \
     dodajpoloczenie.cpp \
+    formularz.cpp \
     gra.cpp \
     gracz.cpp \
     instrukcja.cpp \
@@ -40,6 +41,7 @@ SOURCES += \
 HEADERS += \
     altanka.h \
     dodajpoloczenie.h \
+    formularz.h \
     gra.h \
     gracz.h \
     instrukcja.h \
