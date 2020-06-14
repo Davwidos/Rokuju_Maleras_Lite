@@ -205,7 +205,9 @@ void Gra::kolejnatura(int m) // przejscie do kolejnej tury
 
 void Gra::nowaGra() // rozpoczecie nowej gry
 {
+
     start();
+     qDebug()<<talia->size()<<"tyle kart";
     poloczenie->send(QString::number(dobierz()->getMoc()+30));
     poloczenie->send(QString::number(dobierz()->getMoc()+30));
     poloczenie->send(QString::number(dobierz()->getMoc()+30));

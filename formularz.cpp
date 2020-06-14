@@ -7,6 +7,7 @@ Formularz::Formularz(QWidget *parent):QDialog(parent)
     QLabel *label=new QLabel("Zgadnij, jaka karte ma przciwnik");
     QFormLayout *layout=new QFormLayout(this);
     v=new QComboBox(this);
+    v->addItem("");
     v->addItem("Altanka");
     v->addItem("Mysz");
     v->addItem("Kaczor");
