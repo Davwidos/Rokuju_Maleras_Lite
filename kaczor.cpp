@@ -18,19 +18,31 @@ bool Kaczor::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie)// dzialanie ka
         if(g->k1==this)
         {
             if(g->k2->getMoc()>d->k1->getMoc())
+            {
                 gra->wygrana();
+                return false;
+            }
 
              if(g->k2->getMoc()<d->k1->getMoc())
+             {
                  gra->przegrana();
+                 return false;
+             }
              if(g->k2->getMoc()==d->k1->getMoc())
                  gra->remis();
         }
         else
         {
-            if(g->k1->getMoc()>d->k1->getMoc())
+            if(g->k1->getMoc()>d->k1->getMoc())   
+            {
                 gra->wygrana();
+                return false;
+            }
              if(g->k1->getMoc()<d->k1->getMoc())
+             {
                  gra->przegrana();
+                 return false;
+             }
              if(g->k1->getMoc()==d->k1->getMoc())
                  gra->remis();
         }

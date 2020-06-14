@@ -11,7 +11,7 @@ Skarb::Skarb(QString path,Gra *gra, QGraphicsItem *parent) :Karta(path,gra,paren
 bool Skarb::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie)// działanie skarbu
 {
    gra->przegrana();
-return true;
+return false;
 }
 
 void Skarb::wybrano(QString) //zagranie skarbu
