@@ -207,6 +207,9 @@ void Gra::nowaGra() // rozpoczecie nowej gry
 {
     start();
     poloczenie->send(QString::number(dobierz()->getMoc()+30));
+    poloczenie->send(QString::number(dobierz()->getMoc()+30));
+    poloczenie->send(QString::number(dobierz()->getMoc()+30));
+    qDebug()<<talia->size()<<"tyle kart";
     tura();
 }
 
