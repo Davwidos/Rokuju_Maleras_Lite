@@ -294,6 +294,14 @@ void Gra::recive(QString s,QString nadawca) // otrzymywanie danych od drugiego g
         msgBox->setText("Remis!");
         msgBox->show();
     }
+    if(k==24)
+    {
+        scene->removeItem(gracz->k1);
+                delete gracz->k1;
+        gracz->k1=nullptr;
+        tura();
+        gracz->tura=false;
+    }
 }
 
 void Gra::send(int w) // wyslanie fanych do drugiego gracza
