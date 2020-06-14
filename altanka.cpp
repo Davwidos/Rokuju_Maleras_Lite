@@ -21,6 +21,7 @@ bool Altanka::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie)
       g->k2=b;
 
       b->setX(gra->width()/2);
+
       }
       else
       {
@@ -30,6 +31,7 @@ bool Altanka::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie)
       g->k1=b;
       b->setX(gra->width()/2-b->boundingRect().width());
       }
+      gra->scene->addItem(b);
       poloczenie->send("22");
   }
 return true;

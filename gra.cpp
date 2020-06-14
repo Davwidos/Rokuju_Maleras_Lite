@@ -278,6 +278,7 @@ void Gra::recive(QString s,QString nadawca)
         }
         connect(gracz->k1,SIGNAL(clicked(Karta*)),gracz,SLOT(zagraj(Karta*)));
         gracz->k1->setX(width()/2-gracz->k1->boundingRect().width());
+        scene->addItem(gracz->k1);
     }
 }
 
