@@ -287,6 +287,12 @@ void Gra::recive(QString s,QString nadawca) // otrzymywanie danych od drugiego g
         gracz->k1->setX(width()/2-gracz->k1->boundingRect().width());
         scene->addItem(gracz->k1);
     }
+    if(k==23)
+    {
+        QMessageBox *msgBox=new QMessageBox (this);
+        msgBox->setText("Remis!");
+        msgBox->show();
+    }
 }
 
 void Gra::send(int w) // wyslanie fanych do drugiego gracza
@@ -307,4 +313,29 @@ void Gra::polacz() // laczenie z innym graczem
 
 }
 
+void Gra::wygrana()
+{
+    QMessageBox *msgBox=new QMessageBox (this);
+    poloczenie->send("20");
+    msgBox->setText("Wygrałeś!");
+    msgBox->exec();
+    this->menu();
+}
+void Gra::przegrana()
+{
+    QMessageBox *msgBox=new QMessageBox (this);
+    poloczenie->send("21");
+    msgBox->setText("Przegrałeś!");
+    msgBox->exec();
+    this->menu();
+}
+void Gra::remis()
+{
+    QMessageBox *msgBox=new QMessageBox (this);
+    poloczenie->send("23");
+    msgBox->setText("Remis!");
+    msgBox->show();
+
+
+}
 

@@ -37,6 +37,9 @@ public slots:
     void recive(QString,QString);
     void send(int);
     void polacz();
+    void wygrana();
+    void przegrana();
+    void remis();
 
 
 private:
