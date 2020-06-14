@@ -17,8 +17,9 @@
 #include "talia.h"
 #include<QDebug>
 #include<QMessageBox>
-Gra::Gra(QWidget *parent) :QGraphicsView(parent) // tworzenie okn az gra
+Gra::Gra(QWidget *parent) :QGraphicsView(parent) 
 {
+	/// tworzenie okn az gra
     QRect rec=QApplication::desktop()->screenGeometry();
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,rec.width(),rec.height());
@@ -36,8 +37,10 @@ Gra::Gra(QWidget *parent) :QGraphicsView(parent) // tworzenie okn az gra
 }
 
 
-Karta *Gra::dobierz() //dobieranie karty przez gracza
+Karta *Gra::dobierz() 
+
 {
+	///dobieranie karty przez gracza
     if(!talia->empty())
     {
         Karta *k=talia->first();

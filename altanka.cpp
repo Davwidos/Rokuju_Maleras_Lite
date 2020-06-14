@@ -1,16 +1,18 @@
 #include "altanka.h"
 #include"gracz.h"
 #include"gra.h"
-Altanka::Altanka(QString path,Gra *gra, QGraphicsItem *parent) :Karta(path,gra,parent) // tworzenie karty altanka 
+Altanka::Altanka(QString path,Gra *gra, QGraphicsItem *parent) :Karta(path,gra,parent) 
 {
+	/// tworzenie karty altanka 
     moc=6;
     nazwa="Altanka";
 }
 
 
-bool Altanka::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie) // dzialanie altanki
+bool Altanka::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie)
 
 {
+	/// dzialanie altanki
     if(g->k1->getMoc()==7||g->k2->getMoc()==7)
         return false;
   if (d->ochrona==false)

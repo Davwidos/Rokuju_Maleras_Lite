@@ -1,9 +1,9 @@
 #include "instrukcja.h"
 #include "gra.h"
 
-Instrukcja::Instrukcja(QGraphicsScene *g):QObject(),QList<Strona_ins *>() // instrukcja
+Instrukcja::Instrukcja(QGraphicsScene *g):QObject(),QList<Strona_ins *>() 
 {
-
+	/// instrukcja
    sc=g;
     Strona_ins *instrukcja=new Strona_ins(":/images/MUNCHKIN_Lista_Skarbow/MUNCHKIN_Lista_Skarbow-01.jpg");
     insert(end(),instrukcja);
@@ -25,8 +25,9 @@ Instrukcja::Instrukcja(QGraphicsScene *g):QObject(),QList<Strona_ins *>() // ins
             sc->addItem(*it);
 }
 
-void Instrukcja::ins(bool k) // wyswietlenie instrukcji
+void Instrukcja::ins(bool k) 
 {
+	/// wyswietlenie instrukcji
     if(k)
     {
         if(it+1==end())

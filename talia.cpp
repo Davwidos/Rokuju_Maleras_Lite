@@ -11,8 +11,9 @@
 #include"skarb.h"
 #include <time.h>
 #include<QDebug>
-Talia::Talia(Gra *t): QList<Karta *>() // tworzenie tali kart
+Talia::Talia(Gra *t): QList<Karta *>() 
 {
+	/// tworzenie tali kart
     for(int i=0;i<5;i++)
     {
         Roslinka *r=new Roslinka(":/images/1.png",t);
@@ -41,8 +42,9 @@ Talia::~Talia()
     for(Karta *k:*this) delete k;
     clear();
 }
-void Talia::tasuj() // tasowanie tali
+void Talia::tasuj() 
 {
+	/// tasowanie tali
     QList<Karta*> t0;
     QList<Karta*> t1;
     QList<Karta*> t2;
@@ -97,8 +99,9 @@ void Talia::tasuj() // tasowanie tali
 
 }
 
-Karta *Talia::dobierzMoc(int m)  // zabranie karty z tali po dobraniu
+Karta *Talia::dobierzMoc(int m)  
 {
+	/// zabranie karty z tali po dobraniu
     for(Karta* k:*this)
         if(k->getMoc()==m)
         {

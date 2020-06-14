@@ -2,9 +2,10 @@
 #include<QGraphicsTextItem>
 #include<QBrush>
 
-//tworzenie nowego przycisku
+
 Przycisk::Przycisk(QString nazwa,QGraphicsItem *parent):QObject(),QGraphicsRectItem(parent)
 {
+	///tworzenie nowego przycisku
     setRect(0,0,200,100);
     QBrush brush;
     brush.setStyle(Qt::SolidPattern);
@@ -17,24 +18,27 @@ Przycisk::Przycisk(QString nazwa,QGraphicsItem *parent):QObject(),QGraphicsRectI
     setAcceptHoverEvents(true);
 }
 
-//co się dzieje po kliknięciu dowolnym przyciskiem myszy w obiekt
+
 void Przycisk::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
+	///co się dzieje po kliknięciu dowolnym przyciskiem myszy w obiekt
     emit clicked(text->toPlainText());
 }
 
-//co się dzieje po najechaniu kursora myszy na obiekt
+
 void Przycisk::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
+	///co się dzieje po najechaniu kursora myszy na obiekt
     QBrush brush;
     brush.setStyle(Qt::SolidPattern);
     brush.setColor(Qt::yellow);
     setBrush(brush);
 }
 
-//co się dzieje po wyjściu kursora myszy poza obiekt
+
 void Przycisk::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {
+	///co się dzieje po wyjściu kursora myszy poza obiekt
     QBrush brush;
     brush.setStyle(Qt::SolidPattern);
     brush.setColor(Qt::red);

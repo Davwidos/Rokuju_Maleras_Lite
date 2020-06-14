@@ -1,13 +1,15 @@
 #include "gracz.h"
 #include"gra.h"
-Gracz::Gracz(Gra *gra, QString nazwa) :QObject() // tworzenie nowego gracza
+Gracz::Gracz(Gra *gra, QString nazwa) :QObject() 
 {
+	/// tworzenie nowego gracza
     this->nazwa=nazwa;
     this->gra=gra;
 }
 
-Karta* Gracz::dobierz() // gracz dobiera karte
+Karta* Gracz::dobierz() 
 {
+	/// gracz dobiera karte
     ochrona=false;
     Karta *k=gra->dobierz();
     if(k==nullptr) return k;
@@ -21,14 +23,16 @@ Karta* Gracz::dobierz() // gracz dobiera karte
     return k;
 }
 
-QString Gracz::getNazwa() // nazwa gracza
+QString Gracz::getNazwa()
 {
+	/// nazwa gracza
     return nazwa;
 }
 
 
-void Gracz::zagraj(Karta *k) // wyrzucenie karty
+void Gracz::zagraj(Karta *k) 
 {
+	/// wyrzucenie karty
     if(k->dzialanie(this,gra->drugigracz,gra->poloczenie) && tura)
     {
         disconnect(k,SIGNAL(clicked(Karta*)),this,SLOT(zagraj(Karta*)));
