@@ -7,7 +7,7 @@ Altanka::Altanka(QString path,Gra *gra, QGraphicsItem *parent) :Karta(path,gra,p
 }
 
 
-bbool Altanka::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie) // dzialanie altanki
+bool Altanka::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie) // dzialanie altanki
 
 {
     if(g->k1->getMoc()==7||g->k2->getMoc()==7)

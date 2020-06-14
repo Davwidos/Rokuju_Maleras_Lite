@@ -15,7 +15,7 @@ DodajPoloczenie::DodajPoloczenie(QWidget *parent) : QGroupBox(parent) //Dodaje p
     connect(button,SIGNAL(pressed()),this,SLOT(zatwierdzono()));
 }
 
-void DodajPoloczenie::zatwierdzono //wyslanie adresu IP
+void DodajPoloczenie::zatwierdzono() //wyslanie adresu IP
 {
     emit wyslij(lineEdit->text());
 }
