@@ -263,7 +263,7 @@ void Gra::recive(QString s,QString nadawca)
     {
         Karta *b=gracz->k1;
         scene->removeItem(gracz->k1);
-        disconnect(gracz->k1,SIGNAL(clicked(Karta*)),this,SLOT(zagraj(Karta*)));
+        disconnect(gracz->k1,SIGNAL(clicked(Karta*)),gracz,SLOT(zagraj(Karta*)));
         if(drugigracz->k1->getMoc()!=6)
         {
 
@@ -276,7 +276,7 @@ void Gra::recive(QString s,QString nadawca)
             gracz->k1=drugigracz->k2;
         drugigracz->k2=b;
         }
-        connect(gracz->k1,SIGNAL(clicked(Karta*)),this,SLOT(zagraj(Karta*)));
+        connect(gracz->k1,SIGNAL(clicked(Karta*)),gracz,SLOT(zagraj(Karta*)));
         gracz->k1->setX(width()/2-gracz->k1->boundingRect().width());
     }
 }
