@@ -17,21 +17,21 @@ bool Kaczor::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie)// dzialanie ka
 
         if(g->k1==this)
         {
-            if(g->k2>d->k1)
+            if(g->k2->getMoc()>d->k1->getMoc())
                 gra->wygrana();
 
-             if(g->k2<d->k1)
+             if(g->k2->getMoc()<d->k1->getMoc())
                  gra->przegrana();
-             if(g->k2==d->k1)
+             if(g->k2->getMoc()==d->k1->getMoc())
                  gra->remis();
         }
         else
         {
-            if(g->k1>d->k1)
+            if(g->k1->getMoc()>d->k1->getMoc())
                 gra->wygrana();
-             if(g->k1<d->k1)
+             if(g->k1->getMoc()<d->k1->getMoc())
                  gra->przegrana();
-             if(g->k1==d->k1)
+             if(g->k1->getMoc()==d->k1->getMoc())
                  gra->remis();
         }
     }

@@ -126,23 +126,23 @@ void Gra::tura() // zaczecie tury
     Karta *k=gracz->dobierz();
     if(k==nullptr)
     {
-        QMessageBox *msgBox=new QMessageBox (this);
+         QMessageBox msgBox;
         if(gracz->k1->getMoc()>=drugigracz->k1->getMoc())
         {
             poloczenie->send("20");
             //QMessageBox *box= new QMessageBox (this);
-                msgBox->setText("Wygrałeś!");
+                msgBox.setText("Wygrałeś!");
 
 
         }
         else
         {
             poloczenie->send("21");
-                msgBox->setText("Przegrałeś!");
+                msgBox.setText("Przegrałeś!");
 
         }
 
-        msgBox->exec();
+        msgBox.exec();
         menu();
        // connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
         return;
@@ -251,17 +251,17 @@ void Gra::recive(QString s,QString nadawca) // otrzymywanie danych od drugiego g
     }
     if(k==20)
     {
-        QMessageBox *msgBox=new QMessageBox (this);
-        msgBox->setText("Przegrałeś!");
-        msgBox->exec();
+         QMessageBox msgBox;
+        msgBox.setText("Przegrałeś!");
+        msgBox.exec();
         menu();
        // connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
     }
     if(k==21)
     {
-        QMessageBox *msgBox=new QMessageBox (this);
-        msgBox->setText("Wygrałeś!");
-        msgBox->exec();
+        QMessageBox msgBox;
+        msgBox.setText("Wygrałeś!");
+        msgBox.exec();
        // connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
         menu();
     }
@@ -289,9 +289,9 @@ void Gra::recive(QString s,QString nadawca) // otrzymywanie danych od drugiego g
     }
     if(k==23)
     {
-        QMessageBox *msgBox=new QMessageBox (this);
-        msgBox->setText("Remis!");
-        msgBox->show();
+        QMessageBox msgBox;
+        msgBox.setText("Remis!");
+        msgBox.show();
     }
 }
 
@@ -315,26 +315,26 @@ void Gra::polacz() // laczenie z innym graczem
 
 void Gra::wygrana()
 {
-    QMessageBox *msgBox=new QMessageBox (this);
+    QMessageBox msgBox;
     poloczenie->send("20");
-    msgBox->setText("Wygrałeś!");
-    msgBox->exec();
+    msgBox.setText("Wygrałeś!");
+    msgBox.exec();
     this->menu();
 }
 void Gra::przegrana()
 {
-    QMessageBox *msgBox=new QMessageBox (this);
+    QMessageBox msgBox;
     poloczenie->send("21");
-    msgBox->setText("Przegrałeś!");
-    msgBox->exec();
+    msgBox.setText("Przegrałeś!");
+    msgBox.exec();
     this->menu();
 }
 void Gra::remis()
 {
-    QMessageBox *msgBox=new QMessageBox (this);
+    QMessageBox msgBox;
     poloczenie->send("23");
-    msgBox->setText("Remis!");
-    msgBox->show();
+    msgBox.setText("Remis!");
+    msgBox.show();
 
 
 }
