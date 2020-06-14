@@ -7,8 +7,11 @@ class Roslinka: public Karta
 public:
     Roslinka(QString path,Gra *gra,QGraphicsItem *parent=0);
     bool dzialanie(Gracz *,Gracz *,UdpSocket *);
+   private:
+    QString wyb;
 public slots:
     void wybrano(QString);
+
 };
 
 #endif // ROSLINKA_H

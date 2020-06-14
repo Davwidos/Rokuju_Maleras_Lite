@@ -6,6 +6,7 @@ Mysz::Mysz(QString path,Gra *gra, QGraphicsItem *parent) :Karta(path,gra,parent)
 {
     moc=2;
     nazwa="Mysz";
+
 }
 
 
