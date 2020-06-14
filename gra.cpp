@@ -206,6 +206,7 @@ void Gra::kolejnatura(int m) // przejscie do kolejnej tury
 void Gra::nowaGra() // rozpoczecie nowej gry
 {
     start();
+    poloczenie->send(QString::number(dobierz()->getMoc()+30));
     tura();
 }
 
@@ -255,6 +256,7 @@ void Gra::recive(QString s,QString nadawca) // otrzymywanie danych od drugiego g
         msgBox.setText("Przegrałeś!");
         msgBox.exec();
         menu();
+        return;
        // connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
     }
     if(k==21)
@@ -264,6 +266,7 @@ void Gra::recive(QString s,QString nadawca) // otrzymywanie danych od drugiego g
         msgBox.exec();
        // connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
         menu();
+        return;
     }
     if(k==22)
     {
@@ -286,10 +289,12 @@ void Gra::recive(QString s,QString nadawca) // otrzymywanie danych od drugiego g
         gracz->k1->setY(height()-gracz->k1->boundingRect().height());
         gracz->k1->setX(width()/2-gracz->k1->boundingRect().width());
         scene->addItem(gracz->k1);
+        return;
     }
     if(k==23)
     {
         wiadomosc("remis!");
+        return;
 
     }
     if(k==24)
@@ -299,6 +304,11 @@ void Gra::recive(QString s,QString nadawca) // otrzymywanie danych od drugiego g
         gracz->k1=nullptr;
         tura();
         gracz->tura=false;
+        return;
+    }
+    if(k<40)
+    {
+       talia->dobierzMoc(k%10);
     }
 }
 

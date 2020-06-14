@@ -16,7 +16,7 @@ Formularz::Formularz(QWidget *parent):QDialog(parent)
     v->addItem("Pierscien");
 
      layout->addRow(label);
-     connect(v,SIGNAL(currentIndexChanged( int index)),this,SLOT(wybrane(int index)));
+     connect(v,SIGNAL(currentIndexChanged( int )),this,SLOT(wybrane(int )));
      layout->addRow(v);
 
 }

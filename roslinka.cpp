@@ -13,6 +13,8 @@ Roslinka::Roslinka(QString path, Gra *gra,QGraphicsItem *parent) :Karta(path,gra
 
 bool Roslinka::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie)  // działanie roślinki
 {
+    if(d->ochrona==false)
+    {
   Formularz formularz;
   connect(&formularz,SIGNAL(przek(QString)),this,SLOT(wybrano(QString)));
   formularz.exec();
@@ -21,6 +23,7 @@ bool Roslinka::dzialanie(Gracz *g, Gracz *d, UdpSocket *poloczenie)  // działan
       gra->wygrana();
       return false;
   }
+    }
 return true;
 }
 
