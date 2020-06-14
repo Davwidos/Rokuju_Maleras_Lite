@@ -19,7 +19,7 @@
 #include<QMessageBox>
 Gra::Gra(QWidget *parent) :QGraphicsView(parent) 
 {
-	/// tworzenie okn az gra
+	/// tworzenie okna z gra
     QRect rec=QApplication::desktop()->screenGeometry();
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,rec.width(),rec.height());
@@ -73,8 +73,9 @@ QList<Przycisk *> Gra::getPrzyciskGracze()
 }
 
 
-void Gra::start() // rozpoczecie gry
+void Gra::start() 
 {
+	/// rozpoczecie gry
     if(state=="polacz") delete dodajPoloczenie;
     gracz=new Gracz(this,"");
     scene->clear();
@@ -86,13 +87,15 @@ void Gra::start() // rozpoczecie gry
 
 }
 
-void Gra::stop() // zakonczenie gry
+void Gra::stop() 
 {
+	//// zakonczenie gry
     QApplication::quit();
 }
 
-void Gra::menu() // przejscie do menu
+void Gra::menu() 
 {
+	//// przejscie do menu
     if(state=="instrukcja") delete instru;
     else if(state=="start")
     {
@@ -124,8 +127,9 @@ void Gra::menu() // przejscie do menu
     scene->addItem(przycisk);
 }
 
-void Gra::tura() // zaczecie tury
+void Gra::tura() 
 {
+	/// zaczecie tury
     Karta *k=gracz->dobierz();
     if(k==nullptr)
     {
@@ -161,10 +165,10 @@ void Gra::tura() // zaczecie tury
     gracz->tura=true;
 }
 
-void Gra::koniectury(Karta* k) //zakonczenie tury
+void Gra::koniectury(Karta* k) 
 {
     //if(!gracz->tura) return;
-
+	///zakonczenie tury
     if(nastole!=nullptr)
     {
         scene->removeItem(nastole);
@@ -177,8 +181,9 @@ void Gra::koniectury(Karta* k) //zakonczenie tury
     drugigracz->ochrona=false;
 }
 
-void Gra::kolejnatura(int m) // przejscie do kolejnej tury
+void Gra::kolejnatura(int m)
 {
+	/// przejscie do kolejnej tury
     Karta *k;
     if(m==1) k=new Roslinka(":/images/1.png",this);
     else if(m==2) k=new Mysz(":/images/2.png",this);
@@ -206,14 +211,16 @@ void Gra::kolejnatura(int m) // przejscie do kolejnej tury
     tura();
 }
 
-void Gra::nowaGra() // rozpoczecie nowej gry
+void Gra::nowaGra() 
 {
+	/// rozpoczecie nowej gry
     start();
     tura();
 }
 
-void Gra::instrukcja() // otworzenie instrukcji
+void Gra::instrukcja() 
 {
+	/// otworzenie instrukcji
     state="instrukcja";
     scene->clear();
      instru=new Instrukcja(scene);
@@ -222,8 +229,9 @@ void Gra::instrukcja() // otworzenie instrukcji
 
 }
 
-void Gra::recive(QString s,QString nadawca) // otrzymywanie danych od drugiego gracza
+void Gra::recive(QString s,QString nadawca) 
 {
+	/// otrzymywanie danych od drugiego gracza
     if(!isdigit(s.toStdString()[0]))
     {
         return;
@@ -305,14 +313,15 @@ void Gra::recive(QString s,QString nadawca) // otrzymywanie danych od drugiego g
     }
 }
 
-void Gra::send(int w) // wyslanie fanych do drugiego gracza
+void Gra::send(int w) 
 {
-
+/// wyslanie fanych do drugiego gracza
     poloczenie->send(QString::number(w));
 }
 
-void Gra::polacz() // laczenie z innym graczem
+void Gra::polacz() 
 {
+	/// laczenie z innym graczem
     state="polacz";
     scene->clear();
     dodajPoloczenie=new DodajPoloczenie(this);
@@ -325,6 +334,7 @@ void Gra::polacz() // laczenie z innym graczem
 
 void Gra::wygrana()
 {
+	//// wyswietlenie okna z wygrana
     QMessageBox msgBox;
     poloczenie->send("20");
     msgBox.setText("Wygrałeś!");
@@ -333,6 +343,7 @@ void Gra::wygrana()
 }
 void Gra::przegrana()
 {
+	///wyswietlenie okna z przegrana
     QMessageBox msgBox;
     poloczenie->send("21");
     msgBox.setText("Przegrałeś!");
@@ -341,6 +352,7 @@ void Gra::przegrana()
 }
 void Gra::wiadomosc(QString t)
 {
+	/// wyswietlenie wiadomosc w trakcie gry
     QMessageBox *msgBox= new QMessageBox(this);
     msgBox->setText(t);
     msgBox->show();
