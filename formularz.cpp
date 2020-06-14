@@ -15,7 +15,7 @@ Formularz::Formularz(QWidget *parent):QDialog(parent)
     v->addItem("Troll");
     v->addItem("Pierscien");
      layout->addRow(label);
-     connect(v,SIGNAL(textActivated(QString*)),this,SLOT(wybrane(QString*)));
+     connect(v,SIGNAL(textActivated(const QString &text)),this,SLOT(wybrane(QString*)));
      layout->addRow(v);
 
 }
