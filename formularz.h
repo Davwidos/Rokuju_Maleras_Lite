@@ -5,6 +5,7 @@
 
 class Formularz:  public QDialog
 {
+    Q_OBJECT
 public:
     Formularz(QWidget *parent=0);
     QComboBox *v;
