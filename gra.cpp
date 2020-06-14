@@ -16,7 +16,8 @@
 #include"strona_ins.h"
 #include "talia.h"
 #include<QDebug>
-Gra::Gra(QWidget *parent) :QGraphicsView(parent)
+#include<QMessageBox>
+Gra::Gra(QWidget *parent) :QGraphicsView(parent) // tworzenie okn az gra
 {
     QRect rec=QApplication::desktop()->screenGeometry();
     scene = new QGraphicsScene();
@@ -35,7 +36,7 @@ Gra::Gra(QWidget *parent) :QGraphicsView(parent)
 }
 
 
-Karta *Gra::dobierz()
+Karta *Gra::dobierz() //dobieranie karty przez gracza
 {
     if(!talia->empty())
     {
@@ -43,6 +44,7 @@ Karta *Gra::dobierz()
         talia->removeFirst();
         return k;
     }
+
     return nullptr;
 }
 
@@ -68,7 +70,7 @@ QList<Przycisk *> Gra::getPrzyciskGracze()
 }
 
 
-void Gra::start()
+void Gra::start() // rozpoczecie gry
 {
     if(state=="polacz") delete dodajPoloczenie;
     gracz=new Gracz(this,"");
@@ -76,21 +78,17 @@ void Gra::start()
     state="start";
     talia=new Talia(this);
     talia->tasuj();
-    for(QString nazwa:poloczenie->getConnections())
-    {
-        Gracz *g = new Gracz(this,nazwa);
-        gracze.push_front(g);
-    }
+    drugigracz=new Gracz(this,"przeciwnik");
     tura();
 
 }
 
-void Gra::stop()
+void Gra::stop() // zakonczenie gry
 {
     QApplication::quit();
 }
 
-void Gra::menu()
+void Gra::menu() // przejscie do menu
 {
     if(state=="instrukcja") delete instru;
     else if(state=="start")
@@ -123,14 +121,34 @@ void Gra::menu()
     scene->addItem(przycisk);
 }
 
-void Gra::tura()
+void Gra::tura() // zaczecie tury
 {
     Karta *k=gracz->dobierz();
     if(k==nullptr)
     {
-        gracz->tura=true;
+        QMessageBox *msgBox=new QMessageBox (this);
+        if(gracz->k1->getMoc()>=drugigracz->k1->getMoc())
+        {
+            poloczenie->send("20");
+            //QMessageBox *box= new QMessageBox (this);
+                msgBox->setText("Wygrałeś!");
+
+
+        }
+        else
+        {
+            poloczenie->send("21");
+                msgBox->setText("Przegrałeś!");
+
+        }
+
+        msgBox->exec();
+        menu();
+       // connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
         return;
+
     }
+    gracz->ochrona=false;
     send(k->getMoc()+10);
     k->setY(height()-k->boundingRect().height());
     scene->addItem(k);
@@ -140,7 +158,7 @@ void Gra::tura()
     gracz->tura=true;
 }
 
-void Gra::koniectury(Karta* k)
+void Gra::koniectury(Karta* k) //zakonczenie tury
 {
     //if(!gracz->tura) return;
 
@@ -153,15 +171,21 @@ void Gra::koniectury(Karta* k)
     nastole->setX(width()/2-nastole->boundingRect().width()/2);
     nastole->setY(height()/2-nastole->boundingRect().height()/2);
     send(nastole->getMoc());
+    drugigracz->ochrona=false;
 }
 
-void Gra::kolejnatura(int m)
+void Gra::kolejnatura(int m) // przejscie do kolejnej tury
 {
     Karta *k;
     if(m==1) k=new Roslinka(":/images/1.png",this);
     else if(m==2) k=new Mysz(":/images/2.png",this);
     else if(m==3) k=new Kaczor(":/images/3.png",this);
-    else if(m==4) k=new Pierscien(":/images/4.png",this);
+    else if(m==4)
+    {
+        k=new Pierscien(":/images/4.png",this);
+        drugigracz->ochrona=true;
+
+    }
     else if(m==5) k=new Troll(":/images/5.png",this);
     else if(m==6) k=new Altanka(":/images/6.png",this);
     else if(m==7) k=new Smok(":/images/7.png",this);
@@ -179,13 +203,13 @@ void Gra::kolejnatura(int m)
     tura();
 }
 
-void Gra::nowaGra()
+void Gra::nowaGra() // rozpoczecie nowej gry
 {
     start();
     tura();
 }
 
-void Gra::instrukcja()
+void Gra::instrukcja() // otworzenie instrukcji
 {
     state="instrukcja";
     scene->clear();
@@ -195,7 +219,7 @@ void Gra::instrukcja()
 
 }
 
-void Gra::recive(QString s,QString nadawca)
+void Gra::recive(QString s,QString nadawca) // otrzymywanie danych od drugiego gracza
 {
     if(!isdigit(s.toStdString()[0]))
     {
@@ -206,23 +230,72 @@ void Gra::recive(QString s,QString nadawca)
     if(state!="start") start();
     if(k<10)
     {
+        if(drugigracz->k1->getMoc()==k)
+        {
+            delete drugigracz->k1;
+        drugigracz->k1=drugigracz->k2;
+        }
+        else
+            delete drugigracz->k2;
         kolejnatura(k);
         return;
     }
     if(k<20)
     {
-        talia->dobierzMoc(k%10);
+
+        if(drugigracz->k1==nullptr)
+           drugigracz->k1= talia->dobierzMoc(k%10);
+        else
+            drugigracz->k2= talia->dobierzMoc(k%10);
         return;
+    }
+    if(k==20)
+    {
+        QMessageBox *msgBox=new QMessageBox (this);
+        msgBox->setText("Przegrałeś!");
+        msgBox->exec();
+        menu();
+       // connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
+    }
+    if(k==21)
+    {
+        QMessageBox *msgBox=new QMessageBox (this);
+        msgBox->setText("Wygrałeś!");
+        msgBox->exec();
+       // connect(msgBox,SIGNAL(buttonClicked(QAbstractButton *button)),this,SLOT(menu()));
+        menu();
+    }
+    if(k==22)
+    {
+        Karta *b=gracz->k1;
+        scene->removeItem(gracz->k1);
+        disconnect(gracz->k1,SIGNAL(clicked(Karta*)),gracz,SLOT(zagraj(Karta*)));
+        if(drugigracz->k1->getMoc()!=6)
+        {
+
+            gracz->k1=drugigracz->k1;
+
+        drugigracz->k1=b;
+        }
+        else
+        {
+            gracz->k1=drugigracz->k2;
+        drugigracz->k2=b;
+        }
+        connect(gracz->k1,SIGNAL(clicked(Karta*)),gracz,SLOT(zagraj(Karta*)));
+        gracz->k1->setY(height()-gracz->k1->boundingRect().height());
+        gracz->k1->setX(width()/2-gracz->k1->boundingRect().width());
+        scene->addItem(gracz->k1);
     }
 }
 
-void Gra::send(int w)
+void Gra::send(int w) // wyslanie fanych do drugiego gracza
 {
 
     poloczenie->send(QString::number(w));
 }
 
-void Gra::polacz()
+void Gra::polacz() // laczenie z innym graczem
 {
     state="polacz";
     scene->clear();
@@ -233,3 +306,5 @@ void Gra::polacz()
     connect(dodajPoloczenie,SIGNAL(wyslij(QString)),poloczenie,SLOT(addConnection(QString)));
 
 }
+
+

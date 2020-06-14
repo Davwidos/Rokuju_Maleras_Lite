@@ -5,6 +5,7 @@
 #include<QGraphicsPixmapItem>
 #include<QGraphicsSceneMouseEvent>
 #include"przycisk.h"
+#include"udpsocket.h"
 class Gracz;
 class Gra;
 
@@ -15,7 +16,8 @@ public:
     Karta(QString path,Gra*,QGraphicsItem *parent=0);
     void gracze();
     void clearPrzyciski();
-    virtual bool dzialanie(Gracz *)=0;
+    virtual bool dzialanie(Gracz *, Gracz *,UdpSocket *poloczenie)=0;
+
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     int getMoc();
 public slots:

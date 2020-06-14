@@ -2,32 +2,29 @@
 #include<QNetworkInterface>
 #include<QHostAddress>
 #include<QDebug>
-UdpSocket::UdpSocket(QGraphicsView *viev,QObject *parent):QObject(parent)
+UdpSocket::UdpSocket(QGraphicsView *viev,QObject *parent):QObject(parent) // stworzenie soceta
 {
     myudpsocket=new QUdpSocket(this);
     //myudpsocket->bind(QHostAddress("25.150.240.229"),1234);
     myudpsocket->bind(QHostAddress::Any,1234);
     connect(myudpsocket,SIGNAL(readyRead()),this,SLOT(readyRead()));
-
-
-
 }
 
-QList<QString> UdpSocket::getConnections()
+QList<QString> UdpSocket::getConnections() // zwraca polaczone adresy
 {
     QList<QString> list;
     for(QHostAddress address:allConnections) list.push_front(address.toString());
     return list;
 }
 
-void UdpSocket::addConnection(QString address)
+void UdpSocket::addConnection(QString address) // dodanie polaczenia
 {
     QByteArray data;
     data.append("connect");
     myudpsocket->writeDatagram(data,QHostAddress(address),1234);
 }
 
-void UdpSocket::readyRead()
+void UdpSocket::readyRead() //odczytanie danych wyslanych przez innego gracza
 {
     QByteArray buffer;
     QHostAddress sender;
@@ -88,12 +85,12 @@ void UdpSocket::readyRead()
     emit karta(buffer.data(),sender.toString());
 }
 
-void UdpSocket::send(QString messege, QHostAddress address)
+void UdpSocket::send(QString messege, QHostAddress address) // wyslanie danych
 {
     QByteArray data;
     data.append(messege);
-    if(address!=QHostAddress::Null) qDebug()<<myudpsocket->writeDatagram(data,address,1234);
-    for(QHostAddress address:allConnections) qDebug()<<myudpsocket->writeDatagram(data,address,1234);
+    if(address!=QHostAddress::Null) while(myudpsocket->writeDatagram(data,address,1234)!=data.size());
+    for(QHostAddress address:allConnections) while(myudpsocket->writeDatagram(data,address,1234)!=data.size());
 
 }
 

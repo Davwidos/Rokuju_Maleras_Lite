@@ -8,7 +8,8 @@ class Altanka :public Karta
 {
 public:
     Altanka(QString path,Gra *gra,QGraphicsItem *parent=0);
-    bool dzialanie(Gracz *);
+    bool dzialanie(Gracz *,Gracz *,UdpSocket *);
+
 public slots:
     void wybrano(QString);
 };

@@ -2,7 +2,8 @@
 #include"gra.h"
 #include"przycisk.h"
 #include<QDebug>
-Karta::Karta(QString path,Gra *gra,QGraphicsItem *parent): QObject(),QGraphicsPixmapItem(parent)
+//klasa obsługujaca  dzialanie kart
+Karta::Karta(QString path,Gra *gra,QGraphicsItem *parent): QObject(),QGraphicsPixmapItem(parent) 
 {
     setPixmap(QPixmap(path).scaled(200,282));
     this->gra=gra;

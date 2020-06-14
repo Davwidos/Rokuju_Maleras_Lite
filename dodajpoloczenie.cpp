@@ -3,7 +3,7 @@
 #include<QFormLayout>
 
 
-DodajPoloczenie::DodajPoloczenie(QWidget *parent) : QGroupBox(parent)
+DodajPoloczenie::DodajPoloczenie(QWidget *parent) : QGroupBox(parent) //Dodaje poloczenie za pomoca hamachi "te okienko co wpisuje sie adres"
 {
     setTitle("Dodaj nowe poloczenie");
     QLabel *label=new QLabel("Addres");
@@ -15,7 +15,7 @@ DodajPoloczenie::DodajPoloczenie(QWidget *parent) : QGroupBox(parent)
     connect(button,SIGNAL(pressed()),this,SLOT(zatwierdzono()));
 }
 
-void DodajPoloczenie::zatwierdzono()
+void DodajPoloczenie::zatwierdzono //wyslanie adresu IP
 {
     emit wyslij(lineEdit->text());
 }
