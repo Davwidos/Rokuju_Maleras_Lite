@@ -10,7 +10,7 @@ public:
     Formularz(QWidget *parent=0);
     QComboBox *v;
 public slots:
-    void wybrane(QString*);
+    void wybrane(int);
 signals:
     void przek(QString);
 

@@ -14,15 +14,17 @@ Formularz::Formularz(QWidget *parent):QDialog(parent)
     v->addItem("Smok");
     v->addItem("Troll");
     v->addItem("Pierscien");
+
      layout->addRow(label);
-     connect(v,SIGNAL(textActivated(const QString &text)),this,SLOT(wybrane(QString*)));
+     connect(v,SIGNAL(currentIndexChanged( int index)),this,SLOT(wybrane(int index)));
      layout->addRow(v);
 
 }
 
-void Formularz::wybrane(QString *wyb)
+
+void Formularz::wybrane(int z)
 {
-    emit przek(*wyb);
+    emit przek(v->currentText());
     done(1);
 
 }
