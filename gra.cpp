@@ -17,6 +17,9 @@
 #include "talia.h"
 #include<QDebug>
 #include<QMessageBox>
+#include<QMediaPlayer>
+#include<QMediaPlaylist>
+#include<QUrl>
 Gra::Gra(QWidget *parent) :QGraphicsView(parent) 
 {
 	/// tworzenie okna z gra
@@ -33,6 +36,12 @@ Gra::Gra(QWidget *parent) :QGraphicsView(parent)
     poloczenie=new UdpSocket(this);
     connect(poloczenie,SIGNAL(karta(QString,QString)),this,SLOT(recive(QString,QString)));
     connect(poloczenie,SIGNAL(connected()),this,SLOT(menu()));
+    QMediaPlaylist *muzyka= new QMediaPlaylist;
+    muzyka->addMedia(QUrl("qrc:/muzyka/muzyka.mp3"));
+    muzyka->setPlaybackMode(QMediaPlaylist::Loop);
+    QMediaPlayer *muz=new QMediaPlayer;
+    muz->setPlaylist(muzyka);
+    muz->play();
     menu();
 }
 
